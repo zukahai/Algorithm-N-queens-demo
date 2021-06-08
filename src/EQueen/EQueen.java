@@ -52,7 +52,6 @@ public class EQueen extends JFrame{
 				bt[i][j] = new JButton();
 //				bt[i][j].setFont(new Font("Britannic Bold", 1, 25));
 				bt[i][j].setBackground(Color.white);
-				bt[i][j].setForeground(Color.white);
 				Q[i][j] = 0;
 				pn.add(bt[i][j]);
 			}

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigInteger;
@@ -14,8 +15,10 @@ import java.util.Vector;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 
@@ -27,13 +30,17 @@ public class EQueen extends JFrame{
 	boolean c[] = new boolean[2000];
 	Timer timer;
 	int count = 1;
-	JButton bt[][] = new JButton[100][100];
-	int Q[][] = new int[100][100];
-	int N = 4;
-	int delay = 1000;
-	public EQueen() {
+	TextArea tf;
+	JButton bt[][] = new JButton[200][200];
+	int Q[][] = new int[200][200];
+	int N = 6;
+	int delay = 0;
+	public EQueen(int N, int delay) {
 		super("Algorithms eight queens demo - HaiZuka");
+		this.N = N;
+		this.delay = delay;
 		cn = init();
+		timer.start();
 	}
 	
 	public Container init() {
@@ -42,7 +49,7 @@ public class EQueen extends JFrame{
 		v.add(1);
 		v.add(0);
 		st.push(v);
-		for (int i = 0; i < 20; i++)
+		for (int i = 0; i < 3 * N; i++)
 			c1[i] = c2[i] = c[i] = true;
 		JPanel pn = new JPanel();
 		pn.setLayout(new GridLayout(N, N));
@@ -56,17 +63,23 @@ public class EQueen extends JFrame{
 				pn.add(bt[i][j]);
 			}
 		
+		tf = new TextArea();
+		tf.setBackground(Color.black);
+		tf.setForeground(Color.white);
 		
+		cn.add(tf, "East");
 		cn.add(pn);
 		
 		this.setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setResizable(false);
-		this.setSize(500, 500);
+//		this.setResizable(false);
+		this.setSize(1100, 700);
 		this.setLocationRelativeTo(null);
 		timer = new Timer(delay, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Vector v = st.peek();
+				Vector v = new Vector();
+				if (!st.empty())
+					v = st.peek();
 				int I = (int)v.get(0);
 				int J = (int)v.get(1) + 1;
 				if (J > 1) {
@@ -87,16 +100,15 @@ public class EQueen extends JFrame{
 					bt[I][J].setBackground(Color.green);
 					if (check(I, J)) {
 						Q[I][J] = 1;
-//						System.out.println((I - J + 7) + " : " + c1[I - J + 7]);
 						c[J] = c1[I - J + N] = c2[I + J - 2] = false;
-//						System.out.println((I - J + 7) + " : " + c1[I - J + 7]);
 						Vector vv = new Vector();
 						vv.add(I + 1);
 						vv.add(0);
 						st.pop();
 						st.push(v);
 						if (I == N) {
-							System.out.println((count++) +": " + st);
+							Stack<Vector<Integer>> ST = st;
+							tf.setText(tf.getText() + (count++) + ": " + getChess(ST) + "\n");
 //							timer.stop();
 						} else {
 							st.push(vv);
@@ -105,10 +117,26 @@ public class EQueen extends JFrame{
 						bt[I][J].setBackground(Color.yellow);
 					}
 				}
+//				System.out.println(st);
 			}
 		});
 		
 		return cn;
+	}
+	
+	public String getChess(Stack<Vector<Integer>> stt) {
+		Vector<Vector<Integer>> Vec = new Vector();
+		String s = "";
+		while (!stt.empty()) {
+			Vector v = stt.pop();
+			Vec.add(v);
+			int I = (int) v.get(0);
+			int J = (int) v.get(1);
+			s = " ("  + I + ", " + J + ") " + s;
+		}
+		for (int i = Vec.size() - 1; i >= 0; i--)
+			stt.add(Vec.elementAt(i));
+		return s;
 	}
 	
 	public boolean check(int i, int j) {
@@ -119,13 +147,6 @@ public class EQueen extends JFrame{
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new EQueen().timer.start();
-//		Stack<Vector<Integer>> st = new Stack<>();
-//		Vector <Integer> v = new Vector<>();
-//		v.add(2);
-//		v.add(3);
-//		st.push(v);
-//		System.out.println(st);
+		new EQueen(4, 1);
 	}
-
 }

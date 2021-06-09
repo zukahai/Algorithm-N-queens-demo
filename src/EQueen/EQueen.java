@@ -188,6 +188,6 @@ public class EQueen extends JFrame{
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new EQueen(5, 1);
+		new EQueen(4, 1);
 	}
 }

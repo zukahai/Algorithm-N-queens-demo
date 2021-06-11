@@ -1,4 +1,4 @@
-## Algorithm-N-queens-demo
+## <p align="center"> Algorithm-N-queens-demo </p>
 
 <p align="center"> <img src="https://github.com/zukahai/Algorithm-N-queens-demo/blob/master/Blog/1.jpg" alt="Tieude" /> </p>
 
@@ -56,4 +56,4 @@ Các bạn có thể xem full source code C++ [tại đây]("https://github.com/
 <p align="center"> <img src="https://github.com/zukahai/Algorithm-N-queens-demo/blob/master/Blog/4.png" alt="blogimage" /> </p>
 
 ### Video Demo
-<p align="center"> <img src="https://github.com/zukahai/Algorithm-N-queens-demo/blob/master/Blog/4.png" alt="blogimage" /> </p>
+https://www.youtube.com/watch?v=Veh6GkVWPT0

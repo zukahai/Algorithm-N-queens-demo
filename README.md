@@ -49,7 +49,7 @@ void NQueen(int i) {
         }
 }
 ```
-Các bạn có thể xem full source code C++ [tại đây]("https://github.com/zukahai/Algorithm-N-queens-demo/blob/master/NQueen.cpp")
+Các bạn có thể xem full source code C++ [Tại đây](https://github.com/zukahai/Algorithm-N-queens-demo/blob/master/NQueen.cpp)
 
 ### Mô phỏng thuật toán N quân hậu
 Để mô phỏng thuật toán này mình đã sử dụng java swing, giao diện chính của phần này sẽ như thế này:
